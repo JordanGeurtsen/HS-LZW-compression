@@ -1,15 +1,17 @@
 import Data.Char (ord, chr)
 
-initDir :: Int -> [(Int, String)]
-initDir x
+makeASCIIList :: Int -> [(Int, String)]
+makeASCIIList x
     | x < 0     = []
     | x > 255   = []
-    | x `elem` [129, 141, 143, 144, 157] = initDir (x + 1)
-    | otherwise = (x, [chr x]) : initDir (x + 1)
+    | otherwise = (x, [chr x]) : makeASCIIList (x + 1)
+
+initDir :: Int -> [(Int, String)]
+initDir = makeASCIIList 0
 
 main :: IO ()
 main = do
    putStrLn "What file would you like to write to?"
    output <- getLine
-   writeFile output $ show (initDir 0)
+   writeFile output $ show initDir
    putStrLn "Done!"
