@@ -7,12 +7,12 @@ makeASCIIList x
     | x `elem` [129, 141, 143, 144, 157] = makeASCIIList (x + 1)
     | otherwise = (x, [chr x]) : makeASCIIList (x + 1)
 
-initDir :: [(Int, String)]
-initDir = makeASCIIList 0
+initDict :: [(Int, String)]
+initDict = makeASCIIList 0
 
 main :: IO ()
 main = do
    putStrLn "What file would you like to write to?"
    output <- getLine
-   writeFile output $ show initDir
+   writeFile output $ show initDict
    putStrLn "Done!"
