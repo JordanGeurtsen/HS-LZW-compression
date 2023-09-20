@@ -1,16 +1,24 @@
 import Data.Char
+import qualified Data.ByteString as B
+import qualified Data.ByteString.Lazy as BL
+import qualified Data.ByteString.Builder as BB
 
-stringToUTF8Array :: String -> [Int]
-stringToUTF8Array [] = []
-stringToUTF8Array (x:xs) = fromEnum x : stringToUTF8Array xs
+getByteString :: String -> B.ByteString
+getByteString x = BL.toStrict (BB.toLazyByteString (BB.stringUtf8 x))
+
+writeByteStringToFile :: FilePath -> B.ByteString -> IO()
+writeByteStringToFile filePath byteString = do
+    B.writeFile filePath byteString
+    putStrLn (show byteString)
+
 
 main :: IO()
 main = do
    putStrLn "What file would you like to encode?"
-   input <- getLine
-   contents <- readFile input
+   input <- Prelude.getLine
+   contents <- Prelude.readFile input
 
    putStrLn "What file would you like to write to?"
-   output <- getLine
-   writeFile output (unlines (map show (stringToUTF8Array contents)))
+   output <- Prelude.getLine
+   writeByteStringToFile output (getByteString contents)
    putStrLn "Done!"
