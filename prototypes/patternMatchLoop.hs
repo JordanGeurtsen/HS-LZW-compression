@@ -1,10 +1,11 @@
 import Data.Char (ord, chr)
+import Data.List (group, sort)
 
 -- The goal of this prototype is to check if i can return a list of times the letter A appears in a string
 -- that is read from a file. Based on the results, i will build another prototype that wil focus on the cycle of pattern
 -- matching and dictionary updating that will be the core of the compression algorithm.
-getPatternMatch :: [(Int, String)] -> String -> [(Int, String)]
-getPatternMatch dict contents = [(1, "a")]
+getPatternMatch :: [(Int, String)] -> String -> Int
+getPatternMatch dict contents = length $ filter (== "A") $ words contents
 
 makeASCIIList :: Int -> [(Int, String)]
 makeASCIIList x
@@ -18,9 +19,7 @@ initDict = makeASCIIList 0
 
 main :: IO ()
 main = do
-    putStrLn "What file would you like to read?"
-    input <- getLine
-    putStrLn "What file would you like to write to?"
-    output <- getLine
-    contents <- readFile input
-    writeFile output $ show (getPatternMatch initDict contents)
+    putStrLn "Starting process..."
+    writeFile "input.txt" "B A B B A B B A B"
+    contents <- readFile "input.txt"
+    putStrLn (show (getPatternMatch initDict contents) ++ " times")
