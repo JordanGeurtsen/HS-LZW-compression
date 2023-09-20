@@ -1,7 +1,10 @@
 import Data.Char (ord, chr)
 
-patternMatchLoop :: [(Int, String)] -> String -> [(Int, String)]
--- implement patternMatchLoop
+-- The goal of this prototype is to check if i can return a list of times the letter A appears in a string
+-- that is read from a file. Based on the results, i will build another prototype that wil focus on the cycle of pattern
+-- matching and dictionary updating that will be the core of the compression algorithm.
+getPatternMatch :: [(Int, String)] -> String -> [(Int, String)]
+getPatternMatch dict contents = [(1, "a")]
 
 makeASCIIList :: Int -> [(Int, String)]
 makeASCIIList x
@@ -19,6 +22,5 @@ main = do
     input <- getLine
     putStrLn "What file would you like to write to?"
     output <- getLine
-    dictionary <- initDict
     contents <- readFile input
-    writeFile output $ show $ patternMatchLoop dictionary contents
+    writeFile output $ show (getPatternMatch initDict contents)
