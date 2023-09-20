@@ -7,7 +7,7 @@ makeASCIIList x
     | x `elem` [129, 141, 143, 144, 157] = makeASCIIList (x + 1)
     | otherwise = (x, [chr x]) : makeASCIIList (x + 1)
 
-initDir :: Int -> [(Int, String)]
+initDir :: [(Int, String)]
 initDir = makeASCIIList 0
 
 main :: IO ()
