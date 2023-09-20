@@ -4,6 +4,7 @@ makeASCIIList :: Int -> [(Int, String)]
 makeASCIIList x
     | x < 0     = []
     | x > 255   = []
+    | x `elem` [129, 141, 143, 144, 157] = makeASCIIList (x + 1)
     | otherwise = (x, [chr x]) : makeASCIIList (x + 1)
 
 initDir :: Int -> [(Int, String)]
