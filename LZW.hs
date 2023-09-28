@@ -19,8 +19,6 @@ main = do
                 outputName <- getLine
                 writeFile outputName (C.compress contents)
                 putStrLn "Done!"
-                putStrLn "Would you like to know the compression information? (y/n)"
-                ratioChoice <- getLine
                 compressionInfo <- U.getCompressionInfo fileName outputName
                 putStrLn ("Original size is " ++ (show (compressionInfo !! 0)) ++
                           "B. Compressed size is " ++ (show (compressionInfo !! 1)) ++
