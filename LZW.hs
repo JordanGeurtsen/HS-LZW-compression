@@ -19,10 +19,14 @@ main = do
                 outputName <- getLine
                 writeFile outputName (C.compress contents)
                 putStrLn "Done!"
-                putStrLn "Would you like to know the compression ratio? (y/n)"
+                putStrLn "Would you like to know the compression information? (y/n)"
                 ratioChoice <- getLine
-                compressionRatio <- U.getCompressionRatio fileName outputName
-                putStrLn ("The compression ratio is " ++ (show compressionRatio) ++ "%.")
+                compressionInfo <- U.getCompressionInfo fileName outputName
+                putStrLn ("Original size is " ++ (show (compressionInfo !! 0)) ++
+                          "B. Compressed size is " ++ (show (compressionInfo !! 1)) ++
+                          "B. The compression ratio is " ++ (show (compressionInfo !! 2)) ++
+                          ". That is " ++ (show (compressionInfo !! 3)) ++
+                          "% space saved.")
        "d" -> do
                 putStrLn "Decompression is not yet implemented."
 --                putStrLn "Enter the name of the file you would like to decompress:"
