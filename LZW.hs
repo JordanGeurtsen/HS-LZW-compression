@@ -2,7 +2,6 @@ module LZW where
 
 import GHC.IO.Encoding
 import Compressor as C
-import Dictionary as Dict
 
 main :: IO ()
 main = do
