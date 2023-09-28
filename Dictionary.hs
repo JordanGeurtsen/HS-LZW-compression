@@ -1,6 +1,7 @@
 module Dictionary where
 
 import qualified Data.Map as Map
+import Data.Char (ord)
 import System.Directory
 
 type Directory = Map.Map String Int
