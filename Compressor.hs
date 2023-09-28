@@ -8,8 +8,8 @@ compress :: String -> String
 compress input =
   let dict = Dict.init
       current = ""
-      input = input
-  in compressLoop dict current input
+      inputStr = input
+  in compressLoop dict current inputStr
 
 compressLoop :: Dict.Directory -> String -> String -> String
 compressLoop dict current input =
