@@ -1,4 +1,5 @@
 main = do
-    putStrLn "Hello, what's your name?"
-    name <- getLine
-    putStrLn ("Hey " ++ name ++ ", you rock!")
+    putStrLn "What file would you like to read?"
+    file <- getLine
+    contents <- readFile file
+    putStrLn contents
