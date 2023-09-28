@@ -16,7 +16,7 @@ main = do
                 contents <- readFile fileName
                 putStrLn "Enter the name of the file you would like to write the compressed data to:"
                 outputName <- getLine
---                writeFile outputName (C.compress contents)
+                writeFile outputName (C.compress contents)
                 putStrLn "Done!"
        "d" -> do
                 putStrLn "Decompression is not yet implemented."
